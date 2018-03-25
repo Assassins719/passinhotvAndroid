@@ -2,7 +2,6 @@ package com.passinhotv.android;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.passinhotv.com.passinhotv.R;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -20,6 +19,6 @@ public class SplashActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 SplashActivity.this.finish();
             }
-        },2000);
+        },3000);
     }
 }

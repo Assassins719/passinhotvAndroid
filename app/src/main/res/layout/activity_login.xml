@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,80 +9,96 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="7">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="250dp"
+            android:layout_width="match_parent"
+            android:minHeight="250dp"
+            android:layout_height="0dp"
+            android:layout_weight="3"
             android:src="@drawable/logo" />
 
         <ss.com.bannerslider.views.BannerSlider
             android:id="@+id/desc_slider"
             android:layout_width="wrap_content"
-            android:layout_height="150dp"
+            android:minHeight="150dp"
+            android:layout_height="0dp"
+            android:layout_weight="2"
             app:defaultBanner="1"
-            app:indicatorSize="0dp"
+            app:indicatorSize="1dp"
             app:interval="8000"
             app:loopSlides="true" />
 
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_round_border_green"
-            android:text="Iniciar!"
-            android:textAllCaps="false"
-            android:textColor="@color/color_green" />
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="0dp"
+            android:minHeight="250dp"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:gravity="center">
 
-            <LinearLayout
+            <Button
+                android:id="@+id/btn_login"
                 android:layout_width="150dp"
-                android:layout_height="1dp"
-                android:background="#fff"></LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="Ou"
-                android:textColor="@color/color_green"
-                android:textSize="18dp" />
-
-            <LinearLayout
-                android:layout_width="150dp"
-                android:layout_height="1dp"
-                android:background="#fff"></LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fazer login"
+                android:background="@drawable/btn_round_border_green"
+                android:text="Iniciar!"
+                android:textAllCaps="false"
                 android:textColor="@color/color_green" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="para sua"
-                android:textColor="#fff" />
+                android:gravity="center"
+                android:orientation="horizontal">
 
-            <TextView
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="1dp"
+                    android:background="#fff"></LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Ou"
+                    android:textColor="@color/color_green"
+                    android:textSize="18dp" />
+
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="1dp"
+                    android:background="#fff"></LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_signup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="conta"
-                android:textColor="#fff" />
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fazer login"
+                    android:textColor="@color/color_green" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="para sua"
+                    android:textColor="#fff" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="conta"
+                    android:textColor="#fff" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</ScrollView>
+</LinearLayout>

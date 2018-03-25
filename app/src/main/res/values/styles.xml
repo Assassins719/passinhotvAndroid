@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/color_black</item>
         <item name="colorPrimaryDark">@color/color_black</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorHint">@color/secondary_text</item>
     </style>
 
 

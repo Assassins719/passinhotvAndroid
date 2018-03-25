@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PassinhoTV</string>
+    <string name="string_crie">Crie uma conta gratuita abaixo ou <font color='#007aff'>resolva a\n partir de um backup</font></string>
 </resources>
