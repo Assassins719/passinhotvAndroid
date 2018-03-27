@@ -12,10 +12,13 @@ import android.widget.TextView;
 
 import java.util.Arrays;
 
+import me.originqiu.library.EditTag;
+
 public class Welcome_1_Activity extends AppCompatActivity {
     TextView tx_login;
     Button btn_contiue;
-    EditText edt_words, edt_address;
+    EditText edt_address;
+    EditTag et_words;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +29,7 @@ public class Welcome_1_Activity extends AppCompatActivity {
     public void initView(){
         tx_login = findViewById(R.id.tx_login);
         btn_contiue = findViewById(R.id.btn_continue);
-        edt_words = findViewById(R.id.edt_words);
+        et_words = findViewById(R.id.edit_tag_view);
         edt_address = findViewById(R.id.edt_address);
         tx_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,26 +47,7 @@ public class Welcome_1_Activity extends AppCompatActivity {
                 startActivityForResult(intent,999);
             }
         });
-        edt_words.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String formatted = Arrays.toString(s.toString().split("(?<=\\G.{4})"));
-                // remove listener to avoid cyclic calling
-                edt_words.addTextChangedListener(null);
-                edt_words.setText(formatted);
-                // reattach listener
-                edt_words.addTextChangedListener(this);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

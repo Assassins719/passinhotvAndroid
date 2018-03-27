@@ -63,19 +63,22 @@
                 android:text="Digite sua Frase de backup"
                 android:textColor="#fff"
                 android:textSize="18dp" />
-            <EditText
-                android:id="@+id/edt_words"
+            <me.originqiu.library.EditTag
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:id="@+id/edit_tag_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="150dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:layout_marginTop="5dp"
+                android:minHeight="150dp"
                 android:background="@drawable/edt_round_border_gray"
-                android:padding="10dp"
-                android:hint="Your account is the 15 words you saved when creating your Account."
-                android:textColor="@color/color_green"
-                />
+                app:input_layout="@layout/word_imput"
+                app:tag_layout="@layout/word_tag"
+                app:delete_mode_bg="@drawable/bkg_word_del"/>
 
             <EditText
                 android:id="@+id/edt_address"
