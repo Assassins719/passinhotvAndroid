@@ -1,10 +1,16 @@
-package com.passinhotv.android;
+package com.passinhotv.android.ui.auth;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.google.common.base.Charsets;
+import com.passinhotv.android.GlobalVar;
+import com.passinhotv.android.R;
+import com.passinhotv.android.auth.WavesWallet;
 
 import me.originqiu.library.EditTag;
 
@@ -28,5 +34,12 @@ public class Getting_2_Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        et_words.setEditable(false);
+        et_words.setTagList(GlobalVar.mSeeds);
+        WavesWallet newWallet = new WavesWallet(GlobalVar.strSeeds.getBytes(Charsets.UTF_8));
+        Log.d("public", newWallet.getAddress());
+        Log.d("public", newWallet.getPublicKeyStr());
+        Log.d("private", String.valueOf(newWallet.getPrivateKey()));
+        et_words.setTagList(GlobalVar.mSeeds);
     }
 }

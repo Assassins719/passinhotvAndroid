@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.passinhotv.android.ui.auth.Getting_1_Activity;
+import com.passinhotv.android.ui.auth.Welcome_1_Activity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,14 +17,14 @@ import ss.com.bannerslider.banners.Banner;
 import ss.com.bannerslider.banners.DrawableBanner;
 import ss.com.bannerslider.views.BannerSlider;
 
-public class LoginActivity extends AppCompatActivity {
+public class StartActivity extends AppCompatActivity {
     Button btn_login;
     LinearLayout lyt_signup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_start);
         initView();
     }
     public void initView(){
@@ -38,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, Getting_1_Activity.class);
+                Intent intent = new Intent(StartActivity.this, Getting_1_Activity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
@@ -47,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         lyt_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, Welcome_1_Activity.class);
+                Intent intent = new Intent(StartActivity.this, Welcome_1_Activity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out);

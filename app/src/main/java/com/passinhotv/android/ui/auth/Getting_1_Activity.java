@@ -1,4 +1,4 @@
-package com.passinhotv.android;
+package com.passinhotv.android.ui.auth;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.passinhotv.android.GlobalVar;
+import com.passinhotv.android.R;
+import com.passinhotv.android.auth.WalletManager;
+
+import java.util.Arrays;
 
 
 public class Getting_1_Activity extends AppCompatActivity {
@@ -56,9 +61,19 @@ public class Getting_1_Activity extends AppCompatActivity {
         btn_continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Getting_1_Activity.this, Getting_2_Activity.class);
-                startActivity(intent);
+                String strPwd = String.valueOf(edt_pwd.getText());
+                String strConfirm = String.valueOf(edt_confirm.getText());
+                if(strPwd.equals(strConfirm)) {
+                    GlobalVar.strPwd = String.valueOf(edt_pwd.getText());
+                    Intent intent = new Intent(Getting_1_Activity.this, Getting_2_Activity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(),"Password not match",Toast.LENGTH_SHORT).show();
+                }
             }
         });
+        GlobalVar.strSeeds = WalletManager.createWalletSeed(this);
+
+        GlobalVar.mSeeds = Arrays.asList(GlobalVar.strSeeds.split(" "));
     }
 }

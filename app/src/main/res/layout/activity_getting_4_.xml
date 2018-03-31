@@ -7,7 +7,7 @@
     android:background="@color/color_black"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.passinhotv.android.Getting_2_Activity">
+    tools:context="com.passinhotv.android.ui.auth.Getting_2_Activity">
 
     <LinearLayout
         android:layout_width="match_parent"

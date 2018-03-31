@@ -1,4 +1,4 @@
-package com.passinhotv.android;
+package com.passinhotv.android.ui.auth;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,9 @@ import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.passinhotv.android.MainFlowActivity;
+import com.passinhotv.android.R;
 
 public class Welcome_Activity extends AppCompatActivity {
     TextView tx_first, tx_second, tx_third, tx_done;

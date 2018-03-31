@@ -1,10 +1,12 @@
-package com.passinhotv.android;
+package com.passinhotv.android.ui.auth;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.passinhotv.android.R;
 
 public class Getting_4_Activity extends AppCompatActivity {
 

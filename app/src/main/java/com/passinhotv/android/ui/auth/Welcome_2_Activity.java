@@ -1,4 +1,4 @@
-package com.passinhotv.android;
+package com.passinhotv.android.ui.auth;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.passinhotv.android.R;
 
 public class Welcome_2_Activity extends AppCompatActivity {
     EditText edt_pwd, edt_confirm;
