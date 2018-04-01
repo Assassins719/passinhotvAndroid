@@ -13,7 +13,7 @@
     android:singleLine="true"
     android:maxEms="30"
     android:layout_margin="5dp"
-    android:hint="Add Word "
+    android:hint=""
     android:imeOptions="actionDone"
     android:textColor="@color/color_green"
     android:textSize="18sp"/>

@@ -62,9 +62,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
+                <CheckBox
+                    android:id="@+id/chk_first"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/color_blue"
                     android:src="@drawable/img_check" />
 
                 <TextView
@@ -81,9 +83,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp">
 
-                <ImageView
+                <CheckBox
+                    android:id="@+id/chk_second"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/color_blue"
                     android:src="@drawable/img_check" />
 
                 <TextView
@@ -100,9 +104,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp">
 
-                <ImageView
+                <CheckBox
+                    android:id="@+id/chk_third"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/color_blue"
                     android:src="@drawable/img_check" />
 
                 <TextView

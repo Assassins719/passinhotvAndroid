@@ -40,6 +40,5 @@ public class Getting_2_Activity extends AppCompatActivity {
         Log.d("public", newWallet.getAddress());
         Log.d("public", newWallet.getPublicKeyStr());
         Log.d("private", String.valueOf(newWallet.getPrivateKey()));
-        et_words.setTagList(GlobalVar.mSeeds);
     }
 }

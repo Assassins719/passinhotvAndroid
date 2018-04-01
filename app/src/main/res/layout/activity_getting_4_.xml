@@ -23,61 +23,110 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:layout_marginTop="30dp"
+            android:padding="10dp"
             android:text="Confirmar Backup"
             android:textAlignment="center"
             android:textColor="@color/color_green"
             android:textSize="24dp" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:layout_marginTop="20dp"
-            android:textAlignment="center"
-            android:textColor="#fff"
-            android:text="Verifique a sua frase de backup ou volte."/>
-        <me.originqiu.library.EditTag
-            android:paddingTop="15dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Verifique a sua frase de backup ou "
+                android:textAlignment="center"
+                android:textColor="#fff" />
+
+            <TextView
+                android:id="@+id/tx_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="volte."
+                android:textColor="@color/color_blue" />
+        </LinearLayout>
+
+        <com.passinhotv.android.ui.auth.EditExtend
+            android:id="@+id/edit_tag_view_selected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/edt_round_border_gray"
+            android:minHeight="150dp"
             android:paddingBottom="15dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:id="@+id/edit_tag_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:minHeight="150dp"
-            android:background="@drawable/edt_round_border_gray"
+            android:paddingTop="15dp"
+            android:textAlignment="center"
+            app:delete_mode_bg="@drawable/bkg_word_del"
             app:input_layout="@layout/word_imput"
-            app:tag_layout="@layout/word_tag"
-            app:delete_mode_bg="@drawable/bkg_word_del"/>
+            app:tag_layout="@layout/word_tag" />
+
+        <Button
+            android:id="@+id/btn_clear"
+            android:layout_width="75dp"
+            android:layout_height="30dp"
+            android:text="Clear"
+            android:layout_gravity="right"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/color_blue"
+            android:visibility="gone"
+            android:background="@drawable/btn_round_circle_green"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:layout_marginTop="20dp"
+            android:text="Toque cada palavra na ordem correta:"
             android:textAlignment="center"
-            android:textColor="#fff"
-            android:text="Toque cada palavra na ordem correta:"/>
+            android:textColor="#fff" />
+
+        <com.passinhotv.android.ui.auth.EditExtend
+            android:id="@+id/edit_tag_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:minHeight="150dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="10dp"
+            app:delete_mode_bg="@drawable/bkg_word_del"
+            app:input_layout="@layout/word_imput"
+            app:tag_layout="@layout/word_tag" />
+
 
         <Button
             android:id="@+id/btn_continue"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="20dp"
-            android:paddingLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/btn_round_border_green"
-            android:text="Confirm"
-            android:textSize="22dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:text="Confirme"
             android:textAllCaps="false"
-            android:textColor="@color/color_green"/>
+            android:textColor="@color/color_green"
+            android:textSize="22dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
