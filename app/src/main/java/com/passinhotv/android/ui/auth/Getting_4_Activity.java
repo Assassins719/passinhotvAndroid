@@ -60,12 +60,13 @@ public class Getting_4_Activity extends AppCompatActivity {
         btn_clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                btn_clear.setVisibility(View.GONE);
+                btn_clear.setVisibility(View.INVISIBLE);
                 mSelectedSeeds.clear();
                 et_seeds.reset();
                 et_selected.clear();
             }
         });
+        btn_continue.setEnabled(false);
         btn_continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,8 +80,23 @@ public class Getting_4_Activity extends AppCompatActivity {
                 Getting_4_Activity.this.finish();
             }
         });
+
     }
     public void CheckSeeds(){
+        boolean isMatch = false;
+        for(int i = 0; i < mSelectedSeeds.size() ; i ++){
+            if(mSelectedSeeds.get(i).equals(GlobalVar.mSeeds.get(i)))
+            {
 
+            }
+            else{
+                isMatch = false;
+            }
+        }
+        if(!isMatch){
+            btn_continue.setEnabled(false);
+        }
+        else
+            btn_continue.setEnabled(true);
     }
 }

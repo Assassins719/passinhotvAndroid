@@ -34,14 +34,16 @@ public class EditExtend extends FrameLayout implements View.OnClickListener, Tex
     private boolean isDelAction;
     private me.originqiu.library.EditTag.TagAddCallback tagAddCallBack;
     private me.originqiu.library.EditTag.TagDeletedCallback tagDeletedCallback;
+    private Boolean isFirst = true;
 
     private SelectedCallback selectedCallback;
-    public void setSelectedCallback(SelectedCallback callback){
+
+    public void setSelectedCallback(SelectedCallback callback) {
         this.selectedCallback = callback;
     }
 
     public EditExtend(Context context) {
-        this(context, (AttributeSet)null);
+        this(context, (AttributeSet) null);
     }
 
     public EditExtend(Context context, AttributeSet attrs) {
@@ -85,23 +87,24 @@ public class EditExtend extends FrameLayout implements View.OnClickListener, Tex
 
     public boolean onKey(View v, int keyCode, KeyEvent event) {
         boolean isHandle = false;
-        if(keyCode == 67 && event.getAction() == 0) {
+        if (keyCode == 67 && event.getAction() == 0) {
             String tagContent = this.editText.getText().toString();
             int tagCount;
-            if(TextUtils.isEmpty(tagContent)) {
+            if (TextUtils.isEmpty(tagContent)) {
                 tagCount = this.flowLayout.getChildCount();
-                if(this.lastSelectTagView == null && tagCount > 1) {
-                    if(this.isDelAction) {
+                if (this.lastSelectTagView == null && tagCount > 1) {
+                    if (this.isDelAction) {
                         this.flowLayout.removeViewAt(tagCount - 2);
-                        if(this.tagDeletedCallback != null) {
-                            this.tagDeletedCallback.onTagDelete((String)this.tagValueList.get(tagCount - 2));
+                        if (this.tagDeletedCallback != null) {
+                            this.tagDeletedCallback.onTagDelete((String) this.tagValueList.get(tagCount - 2));
                         }
 
                         this.tagValueList.remove(tagCount - 2);
                         isHandle = true;
                     } else {
-                        TextView delActionTagView = (TextView)this.flowLayout.getChildAt(tagCount - 2);
+                        TextView delActionTagView = (TextView) this.flowLayout.getChildAt(tagCount - 2);
                         delActionTagView.setBackgroundDrawable(this.getDrawableByResId(this.deleteModeBgRes));
+                        delActionTagView.setTag(this.deleteModeBgRes);
                         this.lastSelectTagView = delActionTagView;
                         this.isDelAction = true;
                     }
@@ -119,11 +122,11 @@ public class EditExtend extends FrameLayout implements View.OnClickListener, Tex
 
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         boolean isHandle = false;
-        if(actionId == 6) {
+        if (actionId == 6) {
             String tagContent = this.editText.getText().toString();
-            if(!TextUtils.isEmpty(tagContent) && (this.tagAddCallBack == null || this.tagAddCallBack != null && this.tagAddCallBack.onTagAdd(tagContent))) {
+            if (!TextUtils.isEmpty(tagContent) && (this.tagAddCallBack == null || this.tagAddCallBack != null && this.tagAddCallBack.onTagAdd(tagContent))) {
                 TextView tagTextView = this.createTag(this.flowLayout, tagContent);
-                if(this.defaultTagBg == null) {
+                if (this.defaultTagBg == null) {
                     this.defaultTagBg = tagTextView.getBackground();
                 }
 
@@ -139,48 +142,39 @@ public class EditExtend extends FrameLayout implements View.OnClickListener, Tex
 
         return isHandle;
     }
-    public void clear(){
+
+    public void clear() {
+        isFirst = true;
         this.flowLayout.removeAllViews();
     }
-    public void reset(){
+
+    public void reset() {
+        isFirst = true;
         this.flowLayout.removeAllViews();
         List<String> mTemp = new ArrayList();
+        for (int i = 0; i < this.tagValueList.size(); i++) {
+            mTemp.add(this.tagValueList.get(i));
+        }
         this.tagValueList.clear();
         this.setTagList(mTemp);
     }
 
     public void onClick(View view) {
-        if(view.getTag() == null) {
-            if(this.lastSelectTagView == null) {
-                this.lastSelectTagView = (TextView)view;
-                view.setBackgroundDrawable(this.getDrawableByResId(this.deleteModeBgRes));
-
-                selectedCallback.onSelected(String.valueOf(this.lastSelectTagView.getText()));
-                this.lastSelectTagView = null;
-            }
-//            else if(this.lastSelectTagView.equals(view)) {
-//                this.lastSelectTagView.setBackgroundDrawable(this.defaultTagBg);
-//                this.lastSelectTagView = null;
-//            }
-//            else {
-//                this.lastSelectTagView.setBackgroundDrawable(this.defaultTagBg);
-//                this.lastSelectTagView = (TextView)view;
-//                view.setBackgroundDrawable(this.getDrawableByResId(this.deleteModeBgRes));
-//            }
-        } else if(this.lastSelectTagView != null) {
-            this.lastSelectTagView.setBackgroundDrawable(this.defaultTagBg);
-            this.lastSelectTagView = null;
+        if (view.getTag() == null) {
+            this.lastSelectTagView = (TextView) view;
+            view.setBackgroundDrawable(this.getDrawableByResId(this.deleteModeBgRes));
+            view.setTag(this.deleteModeBgRes);
+            selectedCallback.onSelected(String.valueOf(this.lastSelectTagView.getText()));
         }
-
     }
 
     private void removeSelectedTag() {
         int size = this.tagValueList.size();
-        if(size > 0 && this.lastSelectTagView != null) {
+        if (size > 0 && this.lastSelectTagView != null) {
             int index = this.flowLayout.indexOfChild(this.lastSelectTagView);
             this.tagValueList.remove(index);
             this.flowLayout.removeView(this.lastSelectTagView);
-            if(this.tagDeletedCallback != null) {
+            if (this.tagDeletedCallback != null) {
                 this.tagDeletedCallback.onTagDelete(this.lastSelectTagView.getText().toString());
             }
 
@@ -197,15 +191,15 @@ public class EditExtend extends FrameLayout implements View.OnClickListener, Tex
     }
 
     private EditText createInputTag(ViewGroup parent) {
-        this.editText = (EditText)LayoutInflater.from(this.getContext()).inflate(this.inputTagLayoutRes, parent, false);
+        this.editText = (EditText) LayoutInflater.from(this.getContext()).inflate(this.inputTagLayoutRes, parent, false);
         return this.editText;
     }
 
     private void addTagView(List<String> tagList) {
         int size = tagList.size();
 
-        for(int i = 0; i < size; ++i) {
-            this.addTag((String)tagList.get(i));
+        for (int i = 0; i < size; ++i) {
+            this.addTag((String) tagList.get(i));
         }
 
     }
@@ -215,16 +209,17 @@ public class EditExtend extends FrameLayout implements View.OnClickListener, Tex
     }
 
     public void setEditable(boolean editable) {
-        if(editable) {
-            if(!this.isEditableStatus) {
+        if (editable) {
+            if (!this.isEditableStatus) {
                 this.flowLayout.addView(this.editText);
             }
         } else {
             int childCount = this.flowLayout.getChildCount();
-            if(this.isEditableStatus && childCount > 0) {
+            if (this.isEditableStatus && childCount > 0) {
                 this.flowLayout.removeViewAt(childCount - 1);
-                if(this.lastSelectTagView != null) {
+                if (this.lastSelectTagView != null) {
                     this.lastSelectTagView.setBackgroundDrawable(this.defaultTagBg);
+                    this.lastSelectTagView.setTag(this.defaultTagBg);
                     this.isDelAction = false;
                     this.editText.getText().clear();
                 }
@@ -235,18 +230,18 @@ public class EditExtend extends FrameLayout implements View.OnClickListener, Tex
     }
 
     public boolean addTag(String tagContent) {
-        if(TextUtils.isEmpty(tagContent)) {
+        if (TextUtils.isEmpty(tagContent)) {
             return false;
-        } else if(this.tagAddCallBack != null && (this.tagAddCallBack == null || !this.tagAddCallBack.onTagAdd(tagContent))) {
+        } else if (this.tagAddCallBack != null && (this.tagAddCallBack == null || !this.tagAddCallBack.onTagAdd(tagContent))) {
             return false;
         } else {
             TextView tagTextView = this.createTag(this.flowLayout, tagContent);
-            if(this.defaultTagBg == null) {
+            if (this.defaultTagBg == null) {
                 this.defaultTagBg = tagTextView.getBackground();
             }
 
             tagTextView.setOnClickListener(this);
-            if(this.isEditableStatus) {
+            if (this.isEditableStatus) {
                 this.flowLayout.addView(tagTextView, this.flowLayout.getChildCount() - 1);
             } else {
                 this.flowLayout.addView(tagTextView);
@@ -280,15 +275,15 @@ public class EditExtend extends FrameLayout implements View.OnClickListener, Tex
         List<String> tagValues = Arrays.asList(tagValue);
         int childCount = this.flowLayout.getChildCount();
 
-        for(int i = 0; i < childCount; ++i) {
-            if(tagValues.size() > 0) {
+        for (int i = 0; i < childCount; ++i) {
+            if (tagValues.size() > 0) {
                 View view = this.flowLayout.getChildAt(i);
 
                 try {
-                    String value = ((TextView)view).getText().toString();
-                    if(tagValues.contains(value)) {
+                    String value = ((TextView) view).getText().toString();
+                    if (tagValues.contains(value)) {
                         this.tagValueList.remove(value);
-                        if(this.tagDeletedCallback != null) {
+                        if (this.tagDeletedCallback != null) {
                             this.tagDeletedCallback.onTagDelete(value);
                         }
 
@@ -312,6 +307,7 @@ public class EditExtend extends FrameLayout implements View.OnClickListener, Tex
     public interface TagAddCallback {
         boolean onTagAdd(String var1);
     }
+
     public interface SelectedCallback {
         void onSelected(String var1);
     }
