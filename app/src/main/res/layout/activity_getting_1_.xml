@@ -18,44 +18,49 @@
         <ImageView
             android:layout_width="250dp"
             android:layout_height="55dp"
-            android:background="@drawable/logo_top" />
+            android:background="@drawable/img_logo_top" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:layout_marginTop="30dp"
+            android:padding="10dp"
             android:text="Criar Uma Nova Conta"
             android:textAlignment="center"
             android:textColor="@color/color_green"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/tx_crie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:layout_marginTop="20dp"
             android:textAlignment="center"
             android:textColor="#fff"
-            android:textSize="18dp" />
+            android:textSize="18dp"
+            android:textStyle="bold|italic" />
+
         <TextView
             android:id="@+id/tx_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="resolva a partir de um backup."
             android:gravity="center"
+            android:text="resolva a partir de um backup."
+            android:textColor="@color/color_blue"
             android:textSize="18dp"
-            android:textColor="@color/color_blue" />
+            android:textStyle="bold|italic" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
-            android:orientation="vertical"
             android:descendantFocusability="beforeDescendants"
-            android:focusableInTouchMode="true">
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -63,7 +68,8 @@
                 android:paddingTop="10dp"
                 android:text="Escolha seu próprio Avatar"
                 android:textColor="#fff"
-                android:textSize="18dp" />
+                android:textSize="18dp"
+                android:textStyle="bold|italic" />
 
             <EditText
                 android:id="@+id/edt_avatar"
@@ -73,9 +79,9 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/edt_round_border_green"
+                android:focusedByDefault="false"
                 android:padding="10dp"
-                android:textColor="@color/color_green"
-                android:focusedByDefault="false"/>
+                android:textColor="@color/color_green" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -84,7 +90,8 @@
                 android:text="Ou"
                 android:textAlignment="center"
                 android:textColor="@color/color_green"
-                android:textSize="22dp" />
+                android:textSize="22dp"
+                android:textStyle="bold|italic" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -93,7 +100,8 @@
                 android:text="Carregue sua foto"
                 android:textAlignment="center"
                 android:textColor="#fff"
-                android:textSize="18dp" />
+                android:textSize="16dp"
+                android:textStyle="bold|italic" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -106,7 +114,7 @@
                     android:layout_width="75dp"
                     android:layout_height="75dp"
                     android:layout_marginRight="30dp"
-                    android:src="@drawable/profile_placeholder" />
+                    android:src="@drawable/img_placeholder_profile" />
 
                 <Button
                     android:id="@+id/btn_upload"
@@ -116,92 +124,110 @@
                     android:padding="0dp"
                     android:text="Upload"
                     android:textAllCaps="false"
-                    android:textColor="@color/color_green" />
+                    android:textColor="@color/color_green"
+                    android:textStyle="bold|italic" />
             </LinearLayout>
         </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="20dp"
             android:text="Proteja sua conta com uma nova senha"
             android:textColor="#fff"
-            android:layout_marginTop="15dp"
-            android:paddingLeft="20dp"/>
+            android:textStyle="bold|italic" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
             android:background="@color/color_black_gray"
             android:descendantFocusability="beforeDescendants"
-            android:focusableInTouchMode="true">
+            android:focusableInTouchMode="true"
+            android:paddingBottom="5dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="5dp">
+
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="Senha"
-                android:textSize="22dp"
-                android:textColor="@color/color_green"/>
+                android:textStyle="bold"
+                android:textColor="@color/color_green"
+                android:textSize="22dp" />
+
             <EditText
                 android:id="@+id/edt_pwd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/color_green"
                 android:background="@android:color/transparent"
-                android:hint="requeridos"
                 android:focusedByDefault="false"
-                android:inputType="textPassword"/>
+                android:hint="requeridos"
+                android:inputType="textPassword"
+                android:textColor="@color/color_green" />
         </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Confirm a senha"
-            android:textColor="#fff"
             android:layout_marginTop="15dp"
-            android:paddingLeft="20dp"/>
+            android:paddingLeft="20dp"
+            android:textStyle="bold|italic"
+            android:text="Confirme a Senha"
+            android:textColor="#fff" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
             android:background="@color/color_black_gray"
             android:descendantFocusability="beforeDescendants"
-            android:focusableInTouchMode="true">
+            android:focusableInTouchMode="true"
+            android:paddingBottom="5dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="5dp">
+
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="Verificar"
-                android:textSize="22dp"
-                android:textColor="@color/color_green"/>
+                android:textStyle="bold"
+                android:textColor="@color/color_green"
+                android:textSize="22dp" />
+
             <EditText
                 android:id="@+id/edt_confirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/color_green"
                 android:background="@android:color/transparent"
-                android:hint="redigite a senha"
                 android:focusedByDefault="false"
-                android:inputType="textPassword"/>
+
+                android:hint="redigite a senha"
+                android:inputType="textPassword"
+                android:textColor="@color/color_green" />
         </LinearLayout>
+
         <TextView
             android:id="@+id/tx_local"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"/>
+            android:textStyle="bold|italic"
+            android:paddingTop="10dp" />
+
         <Button
             android:id="@+id/btn_continue"
-            android:layout_marginBottom="20dp"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/btn_round_border_green"
             android:text="Continuar"
-            android:textSize="22dp"
+            android:textStyle="italic|bold"
             android:textAllCaps="false"
-            android:textColor="@color/color_green"/>
+            android:textColor="@color/color_green"
+            android:textSize="22dp" />
     </LinearLayout>
 </ScrollView>

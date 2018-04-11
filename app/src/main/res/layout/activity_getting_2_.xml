@@ -20,7 +20,7 @@
         <ImageView
             android:layout_width="250dp"
             android:layout_height="55dp"
-            android:background="@drawable/logo_top" />
+            android:background="@drawable/img_logo_top" />
 
         <TextView
             android:layout_width="match_parent"
@@ -28,6 +28,7 @@
             android:padding="10dp"
             android:layout_marginTop="30dp"
             android:text="Salvar Frase de Backup"
+            android:textStyle="bold|italic"
             android:textAlignment="center"
             android:textColor="@color/color_green"
             android:textSize="24dp" />
@@ -38,9 +39,10 @@
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:textAlignment="center"
             android:textColor="#fff"
+            android:textStyle="bold|italic"
             android:text="Como você só controla sua conta, você precisará salvar sua frase de backup caso este aplicativo seja excluído."
             android:textSize="18dp" />
         <TextView
@@ -48,9 +50,10 @@
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:textAlignment="center"
             android:textColor="#fff"
+            android:textStyle="bold|italic"
             android:text="Por favor escreva cuidadosamente estas 15 palavras."/>
         <me.originqiu.library.EditTag
             android:paddingTop="15dp"
@@ -60,7 +63,7 @@
             android:id="@+id/edit_tag_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:minHeight="150dp"
@@ -69,14 +72,14 @@
             app:tag_layout="@layout/word_tag"
             app:delete_mode_bg="@drawable/bkg_word_del"/>
         <TextView
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:id="@+id/tx_seeds"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:minHeight="150dp"
@@ -90,6 +93,7 @@
             android:layout_marginTop="20dp"
             android:textAlignment="center"
             android:textColor="#fff"
+            android:textStyle="bold|italic"
             android:text="Você precisará confirmar esta frase na próxima tela."/>
 
         <Button
@@ -101,6 +105,7 @@
             android:paddingRight="20dp"
             android:paddingLeft="20dp"
             android:background="@drawable/btn_round_border_green"
+            android:textStyle="bold|italic"
             android:text="Eu escrevi isso"
             android:textSize="22dp"
             android:textAllCaps="false"

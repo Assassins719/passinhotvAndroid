@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.passinhotv.android.GlobalVar;
+import com.passinhotv.android.MainFlowActivity;
 import com.passinhotv.android.R;
 
 public class LoginActivity extends AppCompatActivity {
@@ -32,19 +34,26 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, Getting_1_Activity.class);
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-                LoginActivity.this.finish();
             }
         });
         btn_continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(ed_pwd.getText().equals(""))
+                String strPwd = String.valueOf(ed_pwd.getText());
+                if(strPwd.equals(""))
                 {
                     Toast.makeText(getApplicationContext(),"Please enter password.",Toast.LENGTH_SHORT).show();
                 }
                 else{
-
+                    if(strPwd.equals(GlobalVar.strPwd)){
+                        Intent intent = new Intent(LoginActivity.this, MainFlowActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                        startActivity(intent);
+                        LoginActivity.this.finish();
+                    }else{
+                        Toast.makeText(getApplicationContext(),"Password not match.",Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

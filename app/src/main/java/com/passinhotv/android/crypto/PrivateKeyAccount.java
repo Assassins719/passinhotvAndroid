@@ -22,7 +22,9 @@ public class PrivateKeyAccount {
     public byte[] getPrivateKey() {
         return privateKey;
     }
-
+    public String getPrivateKeyStr() {
+        return Base58.encode(getPrivateKey());
+    }
     public String getPublicKeyStr() {
         return Base58.encode(getPublicKey());
     }

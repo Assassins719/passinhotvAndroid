@@ -1,4 +1,4 @@
-package com.passinhotv.android.ui.auth;
+package com.passinhotv.android.ui.auth.EditComponent;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -87,7 +87,7 @@ public class EditExtend extends FrameLayout implements View.OnClickListener, Tex
 
     public boolean onKey(View v, int keyCode, KeyEvent event) {
         boolean isHandle = false;
-        if (keyCode == 67 && event.getAction() == 0) {
+        if (keyCode == 62 && event.getAction() == 0) {
             String tagContent = this.editText.getText().toString();
             int tagCount;
             if (TextUtils.isEmpty(tagContent)) {

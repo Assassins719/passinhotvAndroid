@@ -63,11 +63,13 @@ public class Getting_1_Activity extends AppCompatActivity {
             public void onClick(View view) {
                 String strPwd = String.valueOf(edt_pwd.getText());
                 String strConfirm = String.valueOf(edt_confirm.getText());
-                if(strPwd.equals(strConfirm)) {
+                if (strPwd.length() < 6)
+                    Toast.makeText(getApplicationContext(),"Password must longer than 6 characters",Toast.LENGTH_SHORT).show();
+                else if(strPwd.equals(strConfirm)) {
                     GlobalVar.strPwd = String.valueOf(edt_pwd.getText());
                     Intent intent = new Intent(Getting_1_Activity.this, Getting_2_Activity.class);
-                    startActivity(intent);
-                }else{
+                    startActivityForResult(intent, 1000);
+                }else if (!strPwd.equals(strConfirm)){
                     Toast.makeText(getApplicationContext(),"Password not match",Toast.LENGTH_SHORT).show();
                 }
             }
@@ -75,5 +77,13 @@ public class Getting_1_Activity extends AppCompatActivity {
         GlobalVar.strSeeds = WalletManager.createWalletSeed(this);
 
         GlobalVar.mSeeds = Arrays.asList(GlobalVar.strSeeds.split(" "));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == 1000) {
+            setResult(1000);
+            this.finish();
+        }
     }
 }

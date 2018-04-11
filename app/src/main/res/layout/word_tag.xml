@@ -11,5 +11,6 @@
     android:paddingRight="8dp"
     android:paddingTop="2dp"
     android:layout_margin="5dp"
+    android:textStyle="bold|italic"
     android:textColor="@color/color_black"
     android:textSize="18sp"/>

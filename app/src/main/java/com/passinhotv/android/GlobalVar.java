@@ -1,5 +1,11 @@
 package com.passinhotv.android;
 
+import android.util.Base64;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.storage.StorageReference;
+import com.passinhotv.android.auth.WavesWallet;
+
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -24,12 +30,18 @@ public class GlobalVar {
     public static String strSeeds;
     public static List<String> mSeeds;
     public static String strPwd;
+    public static String strAddress;
+    public static String strAddressEncrypted;
+    public static String strPrivate;
 
+    public static WavesWallet mWallet;
     public static final String KEY_INTENT_PASSWORD = "intent_password";
-    public static final String KEY_INTENT_SEED = "intent_seed";
+    public static final String KEY_INTENT_ADDRESS = "intent_seed";
     public static final String KEY_INTENT_PRIVATE = "intent_seed";
+    public static final String KEY_INTENT_LOCAL = "0123456789ABCDEF";
 
-    public static final String KEY_INTENT_LOCAL = "Encrypt";
+    public static StorageReference mStorageRef;
+    public static DatabaseReference mDatabaseRef;
 
     public static SecretKey generateKey()
             throws NoSuchAlgorithmException, InvalidKeySpecException
@@ -37,7 +49,7 @@ public class GlobalVar {
         return new SecretKeySpec(KEY_INTENT_LOCAL.getBytes(), "AES");
     }
 
-    public static byte[] encryptMsg(String message)
+    public static String encryptMsg(String message)
             throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InvalidParameterSpecException, IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException
     {
    /* Encrypt the message. */
@@ -51,13 +63,15 @@ public class GlobalVar {
         cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         cipher.init(Cipher.ENCRYPT_MODE, secret);
         byte[] cipherText = cipher.doFinal(message.getBytes("UTF-8"));
-        return cipherText;
+        String encrypedString= Base64.encodeToString(cipherText, Base64.DEFAULT);
+        return encrypedString;
     }
 
-    public static String decryptMsg(byte[] cipherText)
+    public static String decryptMsg(String encrypedStr)
             throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidParameterSpecException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, UnsupportedEncodingException
     {
     /* Decrypt the message, given derived encContentValues and initialization vector. */
+        byte[] cipherText = Base64.decode(encrypedStr, Base64.DEFAULT);
         SecretKey secret = null;
         try {
             secret = generateKey();

@@ -18,13 +18,14 @@
         <ImageView
             android:layout_width="250dp"
             android:layout_height="55dp"
-            android:background="@drawable/logo_top" />
+            android:background="@drawable/img_logo_top" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:padding="10dp"
+            android:textStyle="bold|italic"
             android:text="Confirmar Backup"
             android:textAlignment="center"
             android:textColor="@color/color_green"
@@ -35,12 +36,13 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold|italic"
                 android:text="Verifique a sua frase de backup ou "
                 android:textAlignment="center"
                 android:textColor="#fff" />
@@ -50,10 +52,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="volte."
+                android:textStyle="bold|italic"
                 android:textColor="@color/color_blue" />
         </LinearLayout>
 
-        <com.passinhotv.android.ui.auth.EditExtend
+        <com.passinhotv.android.ui.auth.EditComponent.EditExtend
             android:id="@+id/edit_tag_view_selected"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -77,6 +80,7 @@
             android:layout_width="75dp"
             android:layout_height="30dp"
             android:text="Clear"
+            android:textStyle="bold|italic"
             android:layout_gravity="right"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
@@ -90,12 +94,13 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
             android:paddingLeft="20dp"
+            android:textStyle="bold|italic"
             android:paddingRight="20dp"
             android:text="Toque cada palavra na ordem correta:"
             android:textAlignment="center"
             android:textColor="#fff" />
 
-        <com.passinhotv.android.ui.auth.EditExtend
+        <com.passinhotv.android.ui.auth.EditComponent.EditExtend
             android:id="@+id/edit_tag_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -118,10 +123,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/btn_round_border_green"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
+            android:textStyle="bold|italic"
             android:text="Confirme"
             android:textAllCaps="false"
             android:textColor="@color/color_green"
@@ -143,6 +149,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="Ou"
+                android:textStyle="bold|italic"
                 android:textColor="@color/color_green"
                 android:textSize="18dp" />
 
@@ -162,20 +169,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fazer login"
-                android:textColor="@color/color_green" />
+                android:text="Limpe"
+                android:textColor="@color/color_blue"
+                android:textStyle="bold|italic" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="para sua"
-                android:textColor="#fff" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="conta"
-                android:textColor="#fff" />
+                android:text="e toque novamente"
+                android:textColor="#fff"
+                android:textStyle="bold|italic" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

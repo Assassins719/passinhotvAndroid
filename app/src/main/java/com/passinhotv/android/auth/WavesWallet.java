@@ -30,6 +30,9 @@ public class WavesWallet {
     public String getPublicKeyStr() {
         return account.getPublicKeyStr();
     }
+    public String getPrivateKeyStr() {
+        return account.getPrivateKeyStr();
+    }
 
     public byte[] getPrivateKey() {
         return account.getPrivateKey();
