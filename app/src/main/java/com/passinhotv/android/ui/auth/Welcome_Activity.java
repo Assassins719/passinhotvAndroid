@@ -92,12 +92,17 @@ public class Welcome_Activity extends AppCompatActivity implements View.OnClickL
         String strPwd = GlobalVar.strPwd;
         String strPrivate = GlobalVar.mWallet.getPrivateKeyStr();
         String strAddress = GlobalVar.mWallet.getAddress();
+        String strPublic = GlobalVar.mWallet.getPublicKeyStr();
         GlobalVar.strAddress = strAddress;
         GlobalVar.strPrivate = strPrivate;
+        GlobalVar.strPublic = strPublic;
         try {
             strPwd= GlobalVar.encryptMsg(GlobalVar.strPwd);
             strPrivate= GlobalVar.encryptMsg(GlobalVar.mWallet.getPrivateKeyStr());
             strAddress = GlobalVar.encryptMsg(GlobalVar.mWallet.getAddress());
+            strPublic = GlobalVar.encryptMsg(GlobalVar.mWallet.getPublicKeyStr());
+            GlobalVar.strAddressEncrypted = GlobalVar.encryptMsg(GlobalVar.strAddress);
+
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (NoSuchPaddingException e) {
@@ -115,6 +120,7 @@ public class Welcome_Activity extends AppCompatActivity implements View.OnClickL
         }
         myEditor.putString(GlobalVar.KEY_INTENT_PASSWORD, strPwd);
         myEditor.putString(GlobalVar.KEY_INTENT_PRIVATE, strPrivate);
+        myEditor.putString(GlobalVar.KEY_INTENT_PUBLIC, strPublic);
         myEditor.putString(GlobalVar.KEY_INTENT_ADDRESS, strAddress);
         myEditor.commit();
         dialog.dismiss();

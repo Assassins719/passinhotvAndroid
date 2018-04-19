@@ -37,11 +37,13 @@ public class SplashActivity extends AppCompatActivity {
         String strPwd = prefs.getString(GlobalVar.KEY_INTENT_PASSWORD, "");
         String strPrivate = prefs.getString(GlobalVar.KEY_INTENT_PRIVATE, "");
         String strAddress = prefs.getString(GlobalVar.KEY_INTENT_ADDRESS, "");
+        String strPublic = prefs.getString(GlobalVar.KEY_INTENT_PUBLIC, "");
         GlobalVar.strAddressEncrypted = strAddress;
         try {
             strPwd = GlobalVar.decryptMsg(strPwd);
             strPrivate = GlobalVar.decryptMsg(strPrivate);
             strAddress = GlobalVar.decryptMsg(strAddress);
+            strPublic = GlobalVar.decryptMsg(strPublic);
         } catch (NoSuchPaddingException e) {
             e.printStackTrace();
         } catch (NoSuchAlgorithmException e) {
@@ -63,6 +65,7 @@ public class SplashActivity extends AppCompatActivity {
         GlobalVar.strPwd = strPwd;
         GlobalVar.strPrivate= strPrivate;
         GlobalVar.strAddress = strAddress;
+        GlobalVar.strPublic = strPublic;
 
         if(!strPrivate.equals("") && !strPwd.equals("")){
             new Handler().postDelayed(new Runnable() {

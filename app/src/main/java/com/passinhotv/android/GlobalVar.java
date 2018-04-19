@@ -33,12 +33,16 @@ public class GlobalVar {
     public static String strAddress;
     public static String strAddressEncrypted;
     public static String strPrivate;
+    public static String strPublic;
 
     public static WavesWallet mWallet;
     public static final String KEY_INTENT_PASSWORD = "intent_password";
-    public static final String KEY_INTENT_ADDRESS = "intent_seed";
-    public static final String KEY_INTENT_PRIVATE = "intent_seed";
+    public static final String KEY_INTENT_ADDRESS = "intent_address";
+    public static final String KEY_INTENT_PRIVATE = "intent_private";
+    public static final String KEY_INTENT_PUBLIC = "intent_public";
     public static final String KEY_INTENT_LOCAL = "0123456789ABCDEF";
+    public static final String BASE_URL = "http://207.148.29.110:9069";
+    public static final String assetID = "9aJNRabwrAhGQnUQ5dVg8B6JNZ65j2US936dm9wr91ZZ";
 
     public static StorageReference mStorageRef;
     public static DatabaseReference mDatabaseRef;

@@ -2,6 +2,7 @@ package com.passinhotv.android;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -21,6 +22,7 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.passinhotv.android.ui.auth.LoginActivity;
+import com.passinhotv.android.ui.auth.Welcome_Activity;
 
 import static android.graphics.Color.BLACK;
 import static android.graphics.Color.TRANSPARENT;
@@ -29,6 +31,7 @@ import static android.graphics.Color.WHITE;
 public class MainFlowActivity extends AppCompatActivity implements View.OnClickListener {
     Button btn_qr, btn_updte;
     Bitmap bmp_qr= null;
+    ProgressDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,11 +41,14 @@ public class MainFlowActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void initView() {
+        dialog = ProgressDialog.show(MainFlowActivity.this, "",
+                "Please wait...", true);
         new Thread(new Runnable() {
             public void run(){
                 String strAddress = GlobalVar.strAddressEncrypted;
                 try {
                     bmp_qr = encodeAsBitmap(strAddress);
+                    dialog.dismiss();
                 } catch (WriterException e) {
                     e.printStackTrace();
                 }

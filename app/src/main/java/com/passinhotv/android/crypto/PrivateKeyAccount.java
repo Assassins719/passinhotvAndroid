@@ -5,8 +5,8 @@ import com.google.common.primitives.Ints;
 
 public class PrivateKeyAccount {
 
-    private byte[] publicKey;
-    private byte[] privateKey;
+    public byte[] publicKey;
+    public byte[] privateKey;
 
     public PrivateKeyAccount(byte[] seed) {
         byte[] hashedSeed = Sha256.hash(Hash.secureHash(Bytes.concat(Ints.toByteArray(0), seed)));
