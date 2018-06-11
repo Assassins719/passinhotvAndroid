@@ -1,16 +1,12 @@
-package com.passinhotv.android;
+package com.passinhotv.android.activity;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Handler;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +21,7 @@ import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.google.zxing.Result;
+import com.passinhotv.android.R;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -132,32 +129,10 @@ public class ScanQRActivity extends AppCompatActivity implements ZXingScannerVie
 
     @Override
     public void handleResult(Result rawResult) {
-//        vibPhone();
         Intent data = new Intent();
         String strAddress = rawResult.getText();
         data.putExtra("address",strAddress);
         setResult(RESULT_OK, data);
         finish();
-//        Uri uri = Uri.parse("http://www.google.com/#q=" + rawResult.getText());
-//        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-//        startActivity(intent);
-//        Handler handler = new Handler();
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                mScannerView.resumeCameraPreview(ScanQRActivity.this);
-//            }
-//        }, 2000);
-    }
-
-    public void vibPhone(){
-        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        // Vibrate for 500 milliseconds
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            v.vibrate(VibrationEffect.createOneShot(250, VibrationEffect.DEFAULT_AMPLITUDE));
-        }else{
-            //deprecated in API 26
-            v.vibrate(250);
-        }
     }
 }

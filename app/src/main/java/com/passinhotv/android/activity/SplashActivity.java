@@ -1,4 +1,4 @@
-package com.passinhotv.android;
+package com.passinhotv.android.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,6 +7,8 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.passinhotv.android.GlobalVar;
+import com.passinhotv.android.R;
 import com.passinhotv.android.ui.auth.EnvironmentManager;
 import com.passinhotv.android.ui.auth.LoginActivity;
 import com.passinhotv.android.util.AppUtil;

@@ -43,7 +43,6 @@ public class GlobalVar {
     public static final String KEY_INTENT_LOCAL = "0123456789ABCDEF";
     public static final String BASE_URL = "http://207.148.29.110:9069";
     public static final String assetID = "9aJNRabwrAhGQnUQ5dVg8B6JNZ65j2US936dm9wr91ZZ";
-
     public static StorageReference mStorageRef;
     public static DatabaseReference mDatabaseRef;
 

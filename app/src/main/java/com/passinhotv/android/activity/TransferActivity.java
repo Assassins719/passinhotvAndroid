@@ -1,9 +1,10 @@
-package com.passinhotv.android;
+package com.passinhotv.android.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -19,21 +20,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.zxing.Result;
+import com.passinhotv.android.GlobalVar;
+import com.passinhotv.android.R;
 import com.passinhotv.android.request.TransferTransactionRequest;
 import com.passinhotv.android.util.AddressUtil;
 import com.wavesplatform.wavesj.PrivateKeyAccount;
-import com.wavesplatform.wavesj.Transaction;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -42,6 +43,8 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidParameterSpecException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -58,12 +61,14 @@ public class TransferActivity extends AppCompatActivity implements View.OnClickL
     String strDesc = "";
     long balance, amount;
     long customFee = (long) 2000000;
+    String strId = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_transfer);
+        checkBalance();
         initView();
         ActivityCompat.requestPermissions(this,
                 new String[]{android.Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE},
@@ -91,6 +96,7 @@ public class TransferActivity extends AppCompatActivity implements View.OnClickL
         et_desc = findViewById(R.id.edt_desc);
         et_reais = findViewById(R.id.edt_converted);
         et_fee = findViewById(R.id.edt_tax);
+
     }
 
     @Override
@@ -141,18 +147,19 @@ public class TransferActivity extends AppCompatActivity implements View.OnClickL
                     e.printStackTrace();
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
-                }catch (Exception e){}
+                } catch (Exception e) {
+                }
                 et_address.setText(strAddressTo);
             }
         }
     }
 
-    public void checkSend(){
+    public void checkSend() {
         strAddressTo = String.valueOf(et_address.getText());
         strDesc = String.valueOf(et_desc.getText());
         try {
             amount = (long) (Float.parseFloat(String.valueOf(et_waves.getText())) * 100000000);
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 //        customFee = 2000000;
@@ -160,9 +167,10 @@ public class TransferActivity extends AppCompatActivity implements View.OnClickL
         if (res == 0) {
             showDialog(this);
         } else {
-            Toast.makeText(getApplicationContext(),res,Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), res, Toast.LENGTH_SHORT).show();
         }
     }
+
     public void showDialog(Activity activity) {
         dialog = new Dialog(activity);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -171,6 +179,15 @@ public class TransferActivity extends AppCompatActivity implements View.OnClickL
         dialog.setContentView(R.layout.dialog_transfer);
         Button btn_cancel = dialog.findViewById(R.id.btn_back);
         Button btn_confirm = dialog.findViewById(R.id.btn_confirm);
+        TextView tx_favelas = dialog.findViewById(R.id.tx_favelas);
+        TextView tx_reais= dialog.findViewById(R.id.tx_reais);
+        TextView tx_fees = dialog.findViewById(R.id.tx_fee);
+        String strFavels = "<font color='red'>" + String.valueOf(et_waves.getText()) + "</font><font color='black'> Favelas</font>";
+        tx_favelas.setText(Html.fromHtml(strFavels), TextView.BufferType.SPANNABLE);
+        String strfees = "<font color='black'>Taxa</font><font color='red'> - 0.020000 </font><font color='black'> Favelas</font>";
+
+        tx_fees.setText(Html.fromHtml(strfees), TextView.BufferType.SPANNABLE);
+
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -190,7 +207,8 @@ public class TransferActivity extends AppCompatActivity implements View.OnClickL
     public void doTransfer() {
         dialog.dismiss();
         long timestamp = System.currentTimeMillis();
-
+        dialog = ProgressDialog.show(TransferActivity.this, "",
+                "Processing Transcation...", true);
         TransferTransactionRequest tx = new TransferTransactionRequest(
                 GlobalVar.assetID,
                 GlobalVar.strPublic,
@@ -199,11 +217,13 @@ public class TransferActivity extends AppCompatActivity implements View.OnClickL
         byte[] mbyte = mTemp.getPrivateKey();
         tx.sign(mbyte);
         String strSignature = tx.getSignature();
-        Log.d("Sign","Sign");
+        Log.d("Sign", "Sign");
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-            String URL = "http://207.148.29.110:9069/assets/broadcast/transfer";
-            JSONObject jsonBody = new JSONObject();
+
+        String URL = GlobalVar.BASE_URL + "/assets/broadcast/transfer";
+
+        JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("senderPublicKey", GlobalVar.strPublic);
             jsonBody.put("assetId", GlobalVar.assetID);
@@ -212,50 +232,144 @@ public class TransferActivity extends AppCompatActivity implements View.OnClickL
             jsonBody.put("fee", customFee);
             jsonBody.put("feeAssetId", GlobalVar.assetID);
             jsonBody.put("timestamp", timestamp);
-            jsonBody.put("attachment", strDesc);
+            jsonBody.put("attachment", tx.attachment);
             jsonBody.put("signature", strSignature);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-            final String requestBody = jsonBody.toString();
+        final String requestBody = jsonBody.toString();
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    Log.i("VOLLEY", response);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
+                URL, jsonBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                dialog.dismiss();
+                Log.i("Response", String.valueOf(response));
+                long nTimeStamp = 0;
+                try {
+                    strId = response.getString("id");
+                    nTimeStamp = response.getLong("timestamp");
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.e("VOLLEY", error.toString());
-                }
-            }) {
-                @Override
-                public String getBodyContentType() {
-                    return "application/json; charset=utf-8";
-                }
-                @Override
-                public byte[] getBody() throws AuthFailureError {
-                    try {
-                        return requestBody == null ? null : requestBody.getBytes("utf-8");
-                    } catch (UnsupportedEncodingException uee) {
-                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
-                        return null;
-                    }
-                }
-                @Override
-                protected Response<String> parseNetworkResponse(NetworkResponse response) {
-                    String responseString = "";
-                    if (response != null) {
-                        responseString = String.valueOf(response.statusCode);
-                        // can get more details such as response.headers
-                    }
-                    return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
-                }
-            };
-            requestQueue.add(stringRequest);
+                Intent intent = new Intent(TransferActivity.this, TransferSuccess.class);
+                Bundle mBundle = new Bundle();
+                mBundle.putString("receipient", strAddressTo);
+                mBundle.putString("id", strId);
+                mBundle.putLong("timestamp", nTimeStamp);
+                mBundle.putString("description", strDesc);
+                mBundle.putBoolean("unconfirmed", false);
+                mBundle.putString("amount",String.valueOf(et_waves.getText()));
+                intent.putExtras(mBundle);
+                startActivity(intent);
+                TransferActivity.this.finish();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                dialog.dismiss();
+                Toast.makeText(getApplicationContext(), "Transaction Failed! Try again later", Toast.LENGTH_SHORT).show();
+                VolleyLog.e("Error: ", error.getMessage());
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json");
+                return headers;
+            }
 
+            @Override
+            public byte[] getBody() {
+                try {
+                    return requestBody == null ? null : requestBody.getBytes("utf-8");
+                } catch (UnsupportedEncodingException uee) {
+                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s",
+                            requestBody, "utf-8");
+                    return null;
+                }
+            }
+        };
+        requestQueue.add(jsonObjectRequest);
     }
+    public void checkBalance(){
+        dialog = ProgressDialog.show(TransferActivity.this, "",
+                "Please wait...", true);
+        RequestQueue chckConfirmReque = Volley.newRequestQueue(this);
+        String url = GlobalVar.BASE_URL + "/assets/balance/" + GlobalVar.strAddress;
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, url,
+                null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray mbalance = response.getJSONArray("balances");
+                    JSONObject mdata = mbalance .getJSONObject(0);
+                    String strBalance = mdata.getString("balance");
+                    balance = Long.parseLong(strBalance);
+                    double dBalance = (double)balance / 100000000;
+                    String strBa = String.format("%.3f", dBalance);
+                    TransferActivity.this.tx_feavelas.setText(strBa);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                dialog.dismiss();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                dialog.dismiss();
+            }
+        }) {
+
+            /**
+             * Passing some request headers
+             */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                //headers.put("Content-Type", "application/json");
+                headers.put("key", "Value");
+                return headers;
+            }
+        };
+        chckConfirmReque.add(req);
+    }
+
+    public void chckInfo(String url, long nTimeStamp) {
+        RequestQueue chckConfirmReque = Volley.newRequestQueue(this);
+        Intent intent = new Intent(TransferActivity.this, TransferSuccess.class);
+        Bundle mBundle = new Bundle();
+
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, url,
+                null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                mBundle.putString("receipient", strAddressTo);
+                mBundle.putString("id", strId);
+                mBundle.putLong("timestamp", nTimeStamp);
+                mBundle.putString("description", strDesc);
+                mBundle.putBoolean("unconfirmed", false);
+                intent.putExtras(mBundle);
+                startActivity(intent);
+                TransferActivity.this.finish();
+                TransferActivity.this.finish();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                mBundle.putString("receipient", strAddressTo);
+                mBundle.putString("id", strId);
+                mBundle.putLong("timestamp", nTimeStamp);
+                mBundle.putString("description", strDesc);
+                mBundle.putBoolean("unconfirmed", false);
+                intent.putExtras(mBundle);
+                startActivity(intent);
+                TransferActivity.this.finish();
+            }
+        });
+        chckConfirmReque.add(req);
+    }
+
     private int validateTransfer() {
         if (!AddressUtil.isValidAddress(strAddressTo)) {
             return R.string.invalid_address;
@@ -265,13 +379,14 @@ public class TransferActivity extends AppCompatActivity implements View.OnClickL
             return R.string.invalid_amount;
         } else if (amount > Long.MAX_VALUE - customFee) {
             return R.string.invalid_amount;
-        } else if (customFee <= 0 || customFee< TransferTransactionRequest.MinFee) {
+        } else if (customFee <= 0 || customFee < TransferTransactionRequest.MinFee) {
             return R.string.insufficient_fee;
         } else if (GlobalVar.strAddress.equals(strAddressTo)) {
             return R.string.send_to_same_address_warning;
         }
         return 0;
     }
+
     @Override
     public void handleResult(Result result) {
 

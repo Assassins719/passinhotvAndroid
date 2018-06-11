@@ -1,10 +1,12 @@
-package com.passinhotv.android;
+package com.passinhotv.android.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.passinhotv.android.R;
 
 public class BoxActivity extends AppCompatActivity implements View.OnClickListener {
     Button btn_back, btn_chat, btn_transfer;

@@ -1,4 +1,4 @@
-package com.passinhotv.android;
+package com.passinhotv.android.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.passinhotv.android.R;
 import com.passinhotv.android.ui.auth.Getting_1_Activity;
 import com.passinhotv.android.ui.auth.Welcome_1_Activity;
 

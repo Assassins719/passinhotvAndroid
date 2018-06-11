@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.passinhotv.android.GlobalVar;
-import com.passinhotv.android.MainFlowActivity;
+import com.passinhotv.android.activity.MainFlowActivity;
 import com.passinhotv.android.R;
 
 public class LoginActivity extends AppCompatActivity {

@@ -7,11 +7,9 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.passinhotv.android.GlobalVar;
-import com.passinhotv.android.MainFlowActivity;
+import com.passinhotv.android.activity.MainFlowActivity;
 import com.passinhotv.android.R;
 
 import java.io.UnsupportedEncodingException;
@@ -40,6 +38,7 @@ public class Welcome_Activity extends AppCompatActivity implements View.OnClickL
     CheckBox chk_first, chk_second, chk_third;
     Button btn_continue;
     ProgressDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

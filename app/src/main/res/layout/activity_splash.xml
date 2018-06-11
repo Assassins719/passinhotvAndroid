@@ -7,7 +7,7 @@
     android:gravity="center"
     android:padding="50dp"
     android:background="@color/color_black"
-    tools:context="com.passinhotv.android.SplashActivity">
+    tools:context="com.passinhotv.android.activity.SplashActivity">
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
