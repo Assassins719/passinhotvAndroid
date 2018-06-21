@@ -24,15 +24,20 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.passinhotv.android.GlobalVar;
 import com.passinhotv.android.R;
+import com.passinhotv.android.components.CircleTransform;
+import com.squareup.picasso.Picasso;
 
 import static android.graphics.Color.TRANSPARENT;
 
 public class MainFlowActivity extends AppCompatActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener, PopupMenu.OnDismissListener {
     Button btn_qr, btn_updte;
-    Bitmap bmp_qr= null;
+    Bitmap bmp_qr = null;
     ProgressDialog dialog;
     ImageButton btn_first, btn_second, btn_third, btn_fourth, btn_fifth;
+    View v_first, v_second, v_search;
+    ImageView img_second_profile;
     int nBtnIndex = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +46,8 @@ public class MainFlowActivity extends AppCompatActivity implements View.OnClickL
         initUI();
 //        initQRCode();
     }
-    public void initUI(){
+
+    public void initUI() {
         btn_qr = findViewById(R.id.btn_qr);
         btn_updte = findViewById(R.id.btn_update);
         btn_qr.setOnClickListener(this);
@@ -56,7 +62,11 @@ public class MainFlowActivity extends AppCompatActivity implements View.OnClickL
         btn_third.setOnClickListener(this);
         btn_fourth.setOnClickListener(this);
         btn_fifth.setOnClickListener(this);
-
+        v_first = findViewById(R.id.view_first);
+        v_second = findViewById(R.id.view_second);
+        v_search = findViewById(R.id.view_search);
+        img_second_profile = v_second.findViewById(R.id.img_profile);
+        Picasso.get().load(R.drawable.img_placeholder_profile).transform(new CircleTransform()).into(img_second_profile);
         nBtnIndex = 1;
         btn_first.setImageResource(R.drawable.tab_first_on);
 
@@ -64,7 +74,7 @@ public class MainFlowActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public boolean onLongClick(View v) {
                 // TODO Auto-generated method stub
-                if(nBtnIndex == 1) {
+                if (nBtnIndex == 1) {
                     btn_first.setImageResource(R.drawable.tab_first_menu);
                     showMenu(v);
                 }
@@ -75,7 +85,7 @@ public class MainFlowActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public boolean onLongClick(View v) {
                 // TODO Auto-generated method stub
-                if(nBtnIndex == 2) {
+                if (nBtnIndex == 2) {
                     btn_second.setImageResource(R.drawable.tab_second_menu);
                     showMenu(v);
                 }
@@ -83,20 +93,21 @@ public class MainFlowActivity extends AppCompatActivity implements View.OnClickL
             }
         });
     }
-    public void showMenu(View v)
-    {
-        PopupMenu popup = new PopupMenu(this,v);
+
+    public void showMenu(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
         popup.setOnMenuItemClickListener(this);// to implement on click event on items of menu
         popup.setOnDismissListener(this);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.type_menu, popup.getMenu());
         popup.show();
     }
+
     public void initQRCode() {
         dialog = ProgressDialog.show(MainFlowActivity.this, "",
                 "Please wait...", true);
         new Thread(new Runnable() {
-            public void run(){
+            public void run() {
                 String strAddress = GlobalVar.strAddressEncrypted;
                 try {
                     bmp_qr = encodeAsBitmap(strAddress);
@@ -109,6 +120,7 @@ public class MainFlowActivity extends AppCompatActivity implements View.OnClickL
 
 
     }
+
     Bitmap encodeAsBitmap(String str) throws WriterException {
         BitMatrix result;
         int WIDTH = 500;
@@ -125,13 +137,14 @@ public class MainFlowActivity extends AppCompatActivity implements View.OnClickL
         for (int y = 0; y < h; y++) {
             int offset = y * w;
             for (int x = 0; x < w; x++) {
-                pixels[offset + x] = result.get(x, y) ? TRANSPARENT: getResources().getColor(R.color.color_green);
+                pixels[offset + x] = result.get(x, y) ? TRANSPARENT : getResources().getColor(R.color.color_green);
             }
         }
         Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_4444);
         bitmap.setPixels(pixels, 0, WIDTH, 0, 0, w, h);
         return bitmap;
     }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -146,12 +159,18 @@ public class MainFlowActivity extends AppCompatActivity implements View.OnClickL
                 btn_first.setImageResource(R.drawable.tab_first_on);
                 btn_second.setImageResource(R.drawable.tab_second_off);
                 btn_fourth.setImageResource(R.drawable.tab_fourth_off);
+                v_first.setVisibility(View.VISIBLE);
+                v_second.setVisibility(View.GONE);
+                v_search.setVisibility(View.GONE);
                 nBtnIndex = 1;
                 break;
             case R.id.btn_second:
                 btn_first.setImageResource(R.drawable.tab_first_off);
                 btn_second.setImageResource(R.drawable.tab_second_on);
                 btn_fourth.setImageResource(R.drawable.tab_fourth_off);
+                v_first.setVisibility(View.GONE);
+                v_second.setVisibility(View.VISIBLE);
+                v_search.setVisibility(View.GONE);
                 nBtnIndex = 2;
                 break;
             case R.id.btn_third:
@@ -163,6 +182,9 @@ public class MainFlowActivity extends AppCompatActivity implements View.OnClickL
                 btn_first.setImageResource(R.drawable.tab_first_off);
                 btn_second.setImageResource(R.drawable.tab_second_off);
                 btn_fourth.setImageResource(R.drawable.tab_fourth_on);
+                v_first.setVisibility(View.GONE);
+                v_second.setVisibility(View.GONE);
+                v_search.setVisibility(View.VISIBLE);
                 nBtnIndex = 4;
                 break;
             case R.id.btn_fifth:
@@ -196,7 +218,7 @@ public class MainFlowActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menu_all:
                 break;
             case R.id.menu_text:
@@ -204,9 +226,9 @@ public class MainFlowActivity extends AppCompatActivity implements View.OnClickL
             case R.id.menu_photo:
                 break;
         }
-        if(nBtnIndex == 1){
+        if (nBtnIndex == 1) {
             btn_first.setImageResource(R.drawable.tab_first_on);
-        }else if(nBtnIndex == 2){
+        } else if (nBtnIndex == 2) {
             btn_second.setImageResource(R.drawable.tab_second_on);
         }
         return true;
@@ -214,9 +236,9 @@ public class MainFlowActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onDismiss(PopupMenu menu) {
-        if(nBtnIndex == 1){
+        if (nBtnIndex == 1) {
             btn_first.setImageResource(R.drawable.tab_first_on);
-        }else if(nBtnIndex == 2){
+        } else if (nBtnIndex == 2) {
             btn_second.setImageResource(R.drawable.tab_second_on);
         }
     }
