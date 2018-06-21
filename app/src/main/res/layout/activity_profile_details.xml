@@ -19,10 +19,10 @@
             android:layout_alignParentStart="true"
             android:layout_marginTop="10dp"
             android:background="#00000000"
+            android:onClick="goBack"
             android:text="Voltar"
             android:textAllCaps="false"
             android:textColor="@color/color_green"
-            android:onClick="goBack"
             android:textSize="18dp" />
 
         <Button
@@ -32,9 +32,9 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="10dp"
             android:background="#00000000"
+            android:onClick="saveData"
             android:text="Salve"
             android:textAllCaps="false"
-            android:onClick="saveData"
             android:textColor="@color/color_green"
             android:textSize="18dp" />
     </RelativeLayout>
@@ -81,8 +81,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:paddingBottom="5dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
@@ -97,14 +97,18 @@
                     android:text="Mostrar Nome"
                     android:textColor="#fff" />
 
-                <TextView
+                <EditText
                     android:id="@+id/tx_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
-                    android:text="Kekel Dancy"
+                    android:textSize="14dp"
+                    android:hint="Kekel Dancy"
+                    android:background="@null"
+                    android:padding="0dp"
                     android:textColor="@color/color_green" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -112,6 +116,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:weightSum="9">
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="2dp"
@@ -127,8 +132,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:paddingBottom="5dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
@@ -150,18 +155,22 @@
                     android:layout_weight="4"
                     android:text="KekelDancy"
                     android:textColor="@color/color_orange" />
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:layout_weight="2">
+                    android:layout_weight="2"
+                    android:gravity="right">
+
                     <Button
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:background="@drawable/img_exchange"/>
+                        android:onClick="goDonate"
+                        android:background="@drawable/img_exchange" />
                 </LinearLayout>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -169,6 +178,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:weightSum="9">
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="2dp"
@@ -184,8 +194,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:paddingBottom="5dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
@@ -208,6 +218,7 @@
                     android:text="N3OH1IJEE9S8A910SJAIiej8"
                     android:textColor="@color/color_orange" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -215,6 +226,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:weightSum="9">
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="2dp"
@@ -226,15 +238,16 @@
                     android:layout_weight="6"
                     android:background="@color/color_white_gray"></LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
+                android:background="@drawable/tab_bkg"
                 android:orientation="horizontal"
                 android:paddingBottom="5dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:paddingTop="5dp"
-                android:background="@drawable/tab_bkg"
                 android:weightSum="9">
 
                 <TextView
@@ -245,55 +258,66 @@
                     android:text="Biografia"
                     android:textColor="#fff" />
 
-                <TextView
+                <EditText
                     android:id="@+id/tx_biografia"
-                    android:paddingTop="10dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
-                    android:text="Dança descentralizada, representando as Favelas!"
+                    android:textSize="14dp"
+                    android:padding="0dp"
+                    android:paddingTop="10dp"
+                    android:background="@null"
+                    android:layout_marginTop="10dp"
+                    android:hint="Dança descentralizada, representando as Favelas!"
                     android:textColor="@color/color_green" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@color/color_white_gray"></LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:padding="10dp"
                 android:layout_gravity="center_horizontal"
-                android:orientation="vertical">
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="10dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="    Informação Privada    "
-                    android:textColor="@color/color_green"/>
+                    android:textColor="@color/color_green" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/color_white_gray"></LinearLayout>
             </LinearLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/color_red"
+                android:text="Usado para enviar apenas o cartão de débito FavelaCoin."
                 android:textAlignment="center"
-                android:text="Usado para enviar apenas o cartão de débito FavelaCoin."/>
+                android:textColor="@color/color_red" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:background="@drawable/tab_bkg"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:background="@drawable/tab_bkg">
+                android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     android:paddingBottom="5dp"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
@@ -313,11 +337,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="6"
-                        android:hint="Nome no cartão de débito FavelaCoin"
                         android:background="@null"
-                        android:textSize="14dp"
-                        android:textColor="@color/color_green" />
+                        android:hint="Nome no cartão de débito FavelaCoin"
+                        android:textColor="@color/color_green"
+                        android:textSize="14dp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -325,6 +350,7 @@
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:weightSum="9">
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="2dp"
@@ -341,8 +367,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:paddingBottom="5dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
@@ -362,12 +388,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
-                    android:lines="1"
                     android:background="@null"
-                    android:textSize="14dp"
                     android:hint="Escreva seu e-mail para comunicações"
-                    android:textColor="@color/color_green" />
+                    android:lines="1"
+                    android:textColor="@color/color_green"
+                    android:textSize="14dp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -375,6 +402,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:weightSum="9">
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="2dp"
@@ -386,15 +414,16 @@
                     android:layout_weight="6"
                     android:background="@color/color_white_gray"></LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
+                android:background="@drawable/tab_bkg"
                 android:orientation="horizontal"
                 android:paddingBottom="5dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:paddingTop="5dp"
-                android:background="@drawable/tab_bkg"
                 android:weightSum="9">
 
                 <TextView
@@ -405,15 +434,19 @@
                     android:text="EndereçoPostal"
                     android:textColor="#fff" />
 
-                <TextView
+                <EditText
+                    android:layout_marginTop="10dp"
                     android:id="@+id/tx_postal"
-                    android:paddingTop="10dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
-                    android:text="Av. Vinte de Janeiro, s/nº - Ilha do Governador, Rio de Janeiro - RJ, 21941-900, Brazil"
+                    android:paddingTop="0dp"
+                    android:textSize="14dp"
+                    android:background="@null"
+                    android:hint="Av. Vinte de Janeiro, s/nº - Ilha do Governador, Rio de Janeiro - RJ, 21941-900, Brazil"
                     android:textColor="@color/color_green" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -421,6 +454,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:weightSum="9">
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="2dp"
@@ -432,11 +466,12 @@
                     android:layout_weight="6"
                     android:background="@color/color_white_gray"></LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:paddingBottom="5dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
@@ -451,14 +486,17 @@
                     android:text="Celular"
                     android:textColor="#fff" />
 
-                <TextView
+                <EditText
                     android:id="@+id/tx_phone"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
-                    android:text="+55213004-6050"
+                    android:textSize="14dp"
+                    android:background="@null"
+                    android:hint="+55213004-6050"
                     android:textColor="@color/color_green" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -466,6 +504,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:weightSum="9">
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="2dp"
@@ -477,18 +516,19 @@
                     android:layout_weight="6"
                     android:background="@color/color_white_gray"></LinearLayout>
             </LinearLayout>
+
             <Button
-                android:layout_gravity="center"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn_round_border_green"
-                android:textSize="18dp"
-                android:text="Salve!"
-                android:layout_marginTop="25dp"
+                android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
-                android:textStyle="bold|italic"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/btn_round_border_green"
+                android:text="Salve!"
                 android:textAllCaps="false"
-                android:textColor="@color/color_green" />
+                android:textColor="@color/color_green"
+                android:textSize="18dp"
+                android:textStyle="bold|italic" />
         </LinearLayout>
     </ScrollView>
 

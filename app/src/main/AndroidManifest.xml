@@ -91,7 +91,8 @@
         <activity android:name=".activity.PostActivity" />
         <activity android:name=".activity.ProfileActivity" />
         <activity android:name=".activity.PublishActivity" />
-        <activity android:name=".activity.ProfileDetailsActivity"></activity>
+        <activity android:name=".activity.ProfileDetailsActivity" />
+        <activity android:name=".activity.DonateActivity"></activity>
     </application>
 
 </manifest>
