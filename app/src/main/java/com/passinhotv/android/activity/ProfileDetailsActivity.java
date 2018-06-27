@@ -25,4 +25,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         Intent intent = new Intent(ProfileDetailsActivity.this, DonateActivity.class);
         startActivity(intent);
     }
+    public void changeAvatar(View v){
+
+    }
 }

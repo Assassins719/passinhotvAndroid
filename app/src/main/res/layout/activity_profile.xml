@@ -86,6 +86,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tx_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
@@ -95,6 +96,7 @@
                 android:textStyle="bold|italic" />
 
             <TextView
+                android:id="@+id/tx_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Dança descentralizada, representando as Favelas!"
@@ -119,6 +121,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tx_like"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1.23k"
@@ -138,6 +141,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tx_favorite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1.23k"
@@ -157,6 +161,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tx_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1.23k"
@@ -176,6 +181,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tx_comment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1.23k"
@@ -195,6 +201,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tx_group"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1.23k"

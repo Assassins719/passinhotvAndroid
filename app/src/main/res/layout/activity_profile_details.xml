@@ -68,13 +68,15 @@
                     android:layout_centerVertical="true"
                     android:src="@drawable/img_placeholder_profile" />
 
-                <TextView
+                <Button
+                    android:onClick="changeAvatar"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="20dp"
                     android:layout_below="@+id/img_avatar"
                     android:layout_centerHorizontal="true"
-                    android:paddingTop="5dp"
+                    android:paddingTop="5px"
                     android:text="Mude a foto do perfil"
+                    android:background="@null"
                     android:textColor="@color/color_blue" />
             </RelativeLayout>
 
@@ -98,7 +100,7 @@
                     android:textColor="#fff" />
 
                 <EditText
-                    android:id="@+id/tx_name"
+                    android:id="@+id/et_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
@@ -211,7 +213,7 @@
                     android:textColor="#fff" />
 
                 <TextView
-                    android:id="@+id/tx_key"
+                    android:id="@+id/tx_address"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
@@ -259,7 +261,7 @@
                     android:textColor="#fff" />
 
                 <EditText
-                    android:id="@+id/tx_biografia"
+                    android:id="@+id/et_bio"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
@@ -333,7 +335,7 @@
                         android:textColor="#fff" />
 
                     <EditText
-                        android:id="@+id/tx_name_bottom"
+                        android:id="@+id/et_name_bottom"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="6"
@@ -436,7 +438,7 @@
 
                 <EditText
                     android:layout_marginTop="10dp"
-                    android:id="@+id/tx_postal"
+                    android:id="@+id/et_postal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
@@ -487,7 +489,7 @@
                     android:textColor="#fff" />
 
                 <EditText
-                    android:id="@+id/tx_phone"
+                    android:id="@+id/et_phone"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
@@ -528,6 +530,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/color_green"
                 android:textSize="18dp"
+                android:onClick="saveData"
                 android:textStyle="bold|italic" />
         </LinearLayout>
     </ScrollView>

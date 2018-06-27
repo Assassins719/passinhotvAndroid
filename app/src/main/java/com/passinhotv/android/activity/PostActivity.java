@@ -1,5 +1,6 @@
 package com.passinhotv.android.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -45,6 +46,7 @@ public class PostActivity extends AppCompatActivity {
         });
     }
     public void openCamera(View v){
-
+        Intent intent = new Intent(this, PublishActivity.class);
+        startActivity(intent);
     }
 }
